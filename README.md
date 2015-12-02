@@ -1,20 +1,14 @@
-# [Kata Seeds](http://kata-seeds.github.io): JavaScript + [Karma](http://karma-runner.github.io/) (with [Jasmine](http://jasmine.github.io/))
-[![Build Status](https://travis-ci.org/kata-seeds/js-karma-seed.svg?branch=master)](https://travis-ci.org/kata-seeds/js-karma-seed)
+I am forced to use **karma@0.10.10** with **jasmine@1.3.1**. Thus I've modified you syntax a bit in the sets ( excluded *done* ).
 
-## Getting Started
+1. Run standalone pat-mock-server (pact-mock-service-0.7.2-1-win32.zip) from https://github.com/bethesque/pact-mock_service/releases
+	https://github.com/bethesque/pact-mock_service/releases/download/v0.7.2/pact-mock-service-0.7.2-1-win32.zip
 
-Clone this repo with `git`:
+	with command 
 
-    git clone https://github.com/kata-seeds/js-karma-seed.git
-    cd js-karma-seed
+	````
+	pact-mock-service.bat --port 1234 --pact-specification-version 2.0.0
+	````
 
-Install dependencies and run your tests with `make`:
+2. Run npm install
 
-    make
-
-You should eventually see 1 test ran and 0 failures. If `make` doesn't work for you, npm probably has some comments that can help you out, otherwise please open an issue.
-
-To run your tests during a kata, use `npm test` to run once, or use `npm run karma` to
-use a watcher to check for file changes.
-
-Now you can start your kata! May we suggest the [Game of Life](http://en.wikipedia.org/wiki/Conway's_Game_of_Life)?
+3. Run tests with **npm test** or **node_modules/karma/bin/karma start**.
