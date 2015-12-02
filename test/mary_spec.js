@@ -29,7 +29,7 @@
             });
         }));
 
-        it('should say hello', function() {
+        it('should say hello Mary', function() {
             helloProvider
                 .given('an alligator with the name Mary exists')
                 .uponReceiving('a request for an alligator')
@@ -65,6 +65,45 @@
 
             runs(function() {
                 expect(result).toEqual({name: 'Mary'});
+            });
+        });
+        
+        it('should say hello Tommy', function() {
+            helloProvider
+                .given('an alligator with the name Tommy exists')
+                .uponReceiving('a request for an alligator')
+                .withRequest('get', '/alligators/Tommy', {
+                }).willRespondWith(200, {
+                    'Content-Type': 'application/json'
+                }, {
+                    'name': 'Tommy'
+                });
+            var flag;
+            var done = function() {
+                console.log("It's DONE");
+            };
+            var result;
+            runs(function() {
+                helloProvider.run(done, function(runComplete) {
+                    client.get('/alligators/Tommy').then(function(data) {
+                        console.log('CALLLBACK CALLED');
+                        result = data.data;
+                        flag = true;
+                        runComplete();
+                    }, function(error) {
+                        console.log(error);
+                        flag = true;
+                        runComplete();
+                    });
+
+                })
+            });
+            waitsFor(function() {
+                return flag;
+            });
+
+            runs(function() {
+                expect(result).toEqual({name: 'Tommy'});
             });
         });
     });
